@@ -1,0 +1,73 @@
+<!DOCTYPE html> 
+<html xmlns:th="http://www.thymeleaf.org"> 
+    <head> 
+    	 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    	<!-- Bootstrap -->
+    	<link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>	
+		<link th:href="@{/resources/bootstrap-editable/css/bootstrap-editable.css}" rel="stylesheet"/>
+		
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"/>
+		<script type="text/javascript" th:src="@{/resources/js/bootstrap.min.js}" src=""></script>
+		
+		
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />         
+        <title>Requira - List requirments</title>   
+    </head> 
+    <body> 
+    
+      
+  <div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">Requira</a>
+    <ul class="nav">
+      <li><a href="#">Dashboard</a></li>
+      <li class="active"><a href="#">Features</a></li>
+      <li><a href="#">Requirements</a></li>
+    </ul>
+  </div>
+  </div>
+  
+  <div class="container-fluid">
+ 
+	<div class="row-fluid">
+	
+	<table class="table table-bordered">             
+      
+		<thead>
+			<tr>				
+				<th>Title</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="r : ${requirements}">
+				<td><a th:text="${r.title}" th:href="@{/requirements/show/__${r.id}__}" href="#">1</a></td>				
+				<td th:text="${r.description}">Washington</td>
+			</tr>
+			</tbody>
+		</table>
+		
+		   </div>
+		   
+		   <div class="row-fluid">
+		   	<a href="#myModal" data-toggle="modal" class="btn btn-primary">Create new requirement</a>
+		   </div>
+  </div>
+  
+  <!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine body...</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Save changes</button>
+  </div>
+</div>
+
+</body>
+</html>

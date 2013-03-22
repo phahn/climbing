@@ -1,0 +1,16 @@
+<!DOCTYPE html> 
+<html xmlns:th="http://www.thymeleaf.org"> 
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />         
+        <title>Requira - Create new requirment</title>   
+    </head> 
+    <body> 
+
+    <form action="#" th:action="@{/requirements/create}" th:object="${command}" method="post">
+		<input type="text" th:field="*{title}"/>
+		<input type="text" th:field="*{description}"/>
+		<input type="submit"/>
+	</form>
+
+</body>
+</html>

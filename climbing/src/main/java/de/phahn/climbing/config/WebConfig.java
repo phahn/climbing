@@ -1,5 +1,6 @@
 package de.phahn.climbing.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -8,7 +9,6 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 import org.springframework.data.mongodb.core.convert.MongoConverter;
 import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
@@ -23,9 +23,6 @@ import org.thymeleaf.spring3.SpringTemplateEngine;
 import org.thymeleaf.spring3.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
-import com.mongodb.MongoClient;
-import com.mongodb.WriteConcern;
-
 
 @Configuration
 @EnableWebMvc
@@ -33,6 +30,10 @@ import com.mongodb.WriteConcern;
 @ComponentScan("de.phahn.climbing")
 @ImportResource("classpath:spring-security.xml")
 public class WebConfig extends WebMvcConfigurerAdapter {
+	
+	@Autowired
+    private MongoDbFactoryConfiguration mongoDbConfiguration;
+
 		
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -78,22 +79,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		return new StandardServletMultipartResolver();
 	}
 
-	@Bean
-	public MongoClient mongo() throws Exception {
-		MongoClient mongo = new MongoClient();
-		return mongo;
-	}
-
-	@Bean
-	public MongoDbFactory mongoDbFactory(MongoClient mongo) throws Exception {
-		return new SimpleMongoDbFactory(mongo, "climbing");
-	}
 
 	@Bean
 	public MongoTemplate mongoTemplate(MongoDbFactory mongoDbFactory) throws Exception {
-		MongoTemplate template = new MongoTemplate(mongoDbFactory);
-		// set write concern to safe so we get unique constraint violations
-		template.setWriteConcern(WriteConcern.SAFE);
+		MongoTemplate template = new MongoTemplate(mongoDbFactory);		
 		return template;
 	}
 

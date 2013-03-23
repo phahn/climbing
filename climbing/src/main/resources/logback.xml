@@ -5,15 +5,14 @@
     <resetJUL>true</resetJUL>
   </contextListener>
   
-  <appender name="file" class="ch.qos.logback.core.FileAppender">
+  <!-- <appender name="file" class="ch.qos.logback.core.FileAppender">
     <file>climbing.log</file>
-    <append>true</append>
-    <!-- encoders are assigned the type
-         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+    <append>true</append>    
     <encoder>
       <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
     </encoder>
   </appender>
+  -->
 
   <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>

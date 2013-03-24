@@ -20,9 +20,9 @@
     </encoder>
   </appender> 
  
-  <logger name="de.eins.scheuerle" level="info" /> 
+  <logger name="org.springframework.security" level="debug" /> 
 
-  <root level="warn">
+  <root level="info">
     <appender-ref ref="console" />
     <!-- <appender-ref ref="file" /> -->
   </root>

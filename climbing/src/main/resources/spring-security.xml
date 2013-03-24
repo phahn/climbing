@@ -5,12 +5,6 @@
       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
  
- 	<!-- webservice security -->
-	<http pattern="/api/**" create-session="stateless" use-expressions="true">
-		<http-basic />
-		<intercept-url pattern="/api/**" access="hasAnyRole('ROLE_WEBSERVICE')" />
-	</http>
- 
     <http use-expressions="true">
     
     	<form-login login-processing-url="/resources/j_spring_security_check" login-page="/login" authentication-failure-url="/login?login_error=t" />
@@ -19,19 +13,16 @@
 		<intercept-url pattern="/resources/**" access="permitAll" />
 		<intercept-url pattern="/login/**" access="permitAll" />
 		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/webjars/**" access="permitAll" />
 		
-        <intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/userdetails/**" access="hasAnyRole('ROLE_USER')" />
        
     </http>
  
     <authentication-manager>
-        <authentication-provider>
-            <password-encoder hash="plaintext"/>
-            <user-service>
-                <user name="webservice" password="webservice" authorities="ROLE_WEBSERVICE" />
-                <user name="admin" password="admin" authorities="ROLE_ADMIN" />
-            </user-service>
-        </authentication-provider>
+    	<authentication-provider user-service-ref="userDetailsService">
+	        		<password-encoder hash="plaintext"/>
+	        </authentication-provider>      
     </authentication-manager>
  
 </beans:beans>

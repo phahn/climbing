@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<html xmlns:th="http://www.thymeleaf.org"> 
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />         
+        <title>Climbing</title> 
+        
+        <link rel='stylesheet' th:href="@{/webjars/bootstrap/2.3.1/css/bootstrap.min.css}"/>
+        <script type="text/javascript" th:href="@{/webjars/jquery/1.9.0/jquery.js}"/>
+        <script type="text/javascript" th:href="@{/webjars/bootstrap/2.3.1/js/bootstrap.min.js}"/>
+        
+         <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 960px;
+      }
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+     
+    </style>
+         
+    </head> 
+    <body>  
+  
+  <div class="container-narrow">
+
+  
+      <div th:fragment="footer" class="footer">
+        <p>&copy; ClimbPartner 2013</p>
+      </div>
+
+    </div>
+	
+
+  
+    </body>
+    
+    	
+    	
+    
+</html>

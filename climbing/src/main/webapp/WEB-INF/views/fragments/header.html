@@ -27,43 +27,26 @@
     </style>
          
     </head> 
-    <body> 
-    
-
-  
-  <div class="container-narrow">
+    <body>  
   
   <div class="container-narrow">
 
-       <div th:substituteby="fragments/header :: header"/>
-
-
-      <hr/>
-
-     
-      <div class="row">
-        <div class="span12">
-        	<h1>Meine Daten</h1>
-        	
-        	
-        	 <form action="#" th:action="@{/registration}" th:object="${user}" method="post">	 	
-		<input class="input-block-level" type="text" th:field="*{email}" placeholder="Email" autocomplete="off"/>		
-		<input class="input-block-level" type="text" th:field="*{username}" placeholder="Username" autocomplete="off"/>		
-		<input class="input-block-level" type="text" th:field="*{password}" placeholder="Password" autocomplete="off"/>
-		<input type="submit" class="btn btn-success" value="Sign up"/>
-	</form>
-	
-         </div>
+        
+           <div class="masthead" th:fragment="header">
+        <ul class="nav nav-pills pull-right">
+          <li ><a href="#" th:href="@{/}">Home</a></li>
+           <li sec:authorize="isAuthenticated()"><a href="#" th:href="@{/userdetails}">User Details</a></li>    
+                   
+          <li sec:authorize="isAnonymous()" class="active" ><a href="#" th:href="@{/login}">Login</a></li>
+          <li sec:authorize="isAuthenticated()"><a href="#" th:href="@{/resources/j_spring_security_logout}">Logout <span th:text="${#authentication.name}"></span></a></li>              
+           
+        </ul>
+        <h3 class="muted">ClimbPartner</h3>      
       </div>
 
-      <hr/>
-
-       <div th:substituteby="fragments/footer :: footer"/>
-
     </div>
- 
 	
-  </div>
+
   
     </body>
     
